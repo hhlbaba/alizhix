@@ -22,7 +22,7 @@ Page({
       baseurl: app.globalData.baseurl,
       supplierId: app.globalData.supplierId
     });
-    this.getticks();
+    // this.getticks();
   },
   goTop(e) {
     console.log(e)
@@ -37,7 +37,23 @@ Page({
     }
   },
   onShow() {
-    this.getticks();
+    var openid = my.getStorageSync({ key: 'userid' }).data; // 缓存数据的key
+    var that = this;
+    my.httpRequest({
+      url: this.data.baseurl + '/api/auth/jwt/directSellinglogin',
+      method: 'post',
+      headers: { 'content-type': 'application/json;charset=UTF-8' },
+      data: { 'wxopenid': openid, 'type': 3 },
+      success(res) {
+        if (res.data.code == 0) {
+          my.setStorageSync({
+            key: 'token',
+            data: res.data.data
+          });
+          that.getticks();
+        }
+      }
+    })
   },
   onPullDownRefresh() {   //下拉刷新
     this.getticks();
@@ -73,32 +89,34 @@ Page({
           my.hideLoading();
         }
       },
+      fail: () => {
+        console.log('fail')
+      }
     });
   },
   getOrderState(arr) {
-      for (let i of arr) {
-        if (i.refundStatus === 0 || i.refundStatus === 5) {
-          if (i.orderStatus === 1) {
-            i.hhlState = 1;     //待支付
-          } else if (i.orderStatus === 2) {
-            i.hhlState = 2;     //已取消
-          } else if (i.orderStatus === 3 || i.orderStatus === 4) {
-            i.hhlState = 3;     //待游玩
-          } else if (i.orderStatus === 5 || i.orderStatus === 6 || i.orderStatus === 7) {
-            i.hhlState = 4;     //已完成
-          }
-        } else {
-          if (i.refundStatus === 1 || i.refundStatus === 2) {
-            i.hhlState = 5;     //退款中
-          }
-          else if (i.refundStatus === 3 || i.refundStatus === 4) {
-            i.hhlState = 6;     //已退款
-          }
+    for (let i of arr) {
+      if (i.refundStatus === 0 || i.refundStatus === 5) {
+        if (i.orderStatus === 1) {
+          i.hhlState = 1;     //待支付
+        } else if (i.orderStatus === 2) {
+          i.hhlState = 2;     //已取消
+        } else if (i.orderStatus === 3 || i.orderStatus === 4) {
+          i.hhlState = 3;     //待游玩
+        } else if (i.orderStatus === 5 || i.orderStatus === 6 || i.orderStatus === 7) {
+          i.hhlState = 4;     //已完成
+        }
+      } else {
+        if (i.refundStatus === 1 || i.refundStatus === 2) {
+          i.hhlState = 5;     //退款中
+        }
+        else if (i.refundStatus === 3 || i.refundStatus === 4) {
+          i.hhlState = 6;     //已退款
         }
       }
+    }
   },
   oddcase(res) {
-    console.log(res)
     var _self = this;
     my.httpRequest({
       url: this.data.baseurl + '/api/order/direct/order/cancel', // 目标服务器url
@@ -118,7 +136,6 @@ Page({
     });
   },
   pay(coco) {
-    var _self = this;
     my.httpRequest({
       url: this.data.baseurl + '/api/order/directSelling/aliCreateTrade',
       data: { 'orderId': coco.target.dataset.id, 'buyerId': my.getStorageSync({ key: 'userid' }).data, 'merchantId': this.data.supplierId },
@@ -134,9 +151,6 @@ Page({
                   url: '../order/order?orderid=' + res.target.dataset.id
                 });
               }
-            },
-            fail: (res) => {
-              console.log(res)
             }
           })
         }
