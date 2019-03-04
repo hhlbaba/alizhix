@@ -1,0 +1,229 @@
+@import "../../wxParse/wxParse.acss";
+.container {
+  display: flex;
+  flex: 1;
+  background-color: #f7f8fa;
+  flex-direction: column;
+}
+
+.apics {
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+}
+
+.apic {
+  width: 100%;
+  height: 400rpx;
+}
+
+.aicon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160rpx;
+  height: 40rpx;
+  background-color: #38bda0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.apicnum {
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+  color: white;
+  z-index: 10;
+}
+
+.adrtxt {
+  background-color: white;
+  padding: 20rpx 3%;
+}
+
+.adrtit {
+  font-size: 36rpx;
+}
+
+.adrinclud {
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  display: flex;
+  color: #585d6d;
+}
+
+.adrprice {
+  display: flex;
+  align-items: baseline;
+  height: 60rpx;
+  position: relative;
+}
+
+.getphone {
+  position: absolute;
+  right: 0;
+  width: 120rpx;
+  height: 60rpx;
+  z-index: 10;
+  opacity: 0;
+}
+
+.getphone2 {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  height: 80rpx;
+  z-index: 10;
+  opacity: 0;
+}
+
+.numred {
+  color: red;
+  font-size: 50rpx;
+  padding: 0 6rpx;
+}
+
+.mnyicon {
+  color: red;
+}
+
+.numgray {
+  color: gray;
+  text-decoration: line-through;
+  padding-left: 30rpx;
+}
+
+.buybtn {
+  position: absolute;
+  right: 0;
+  width: 120rpx;
+  height: 60rpx;
+  background-color: #e94403;
+  color: white;
+  font-size: 26rpx;
+  border-radius: 12rpx;
+  line-height: 60rpx;
+}
+
+.msgiconbox {
+  display: flex;
+  background-color: white;
+  padding: 20rpx 0 40rpx 20rpx;
+  flex-wrap: wrap;
+}
+
+.msgicon {
+  color: #0084ff;
+  font-size: 26rpx;
+  border: 1px solid #0084ff;
+  padding: 6rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
+  margin-bottom: 6rpx;
+}
+
+.buyknow {
+  padding: 3%;
+  background-color: white;
+  padding-bottom: 100rpx;
+}
+
+.knowtitle {
+  font-size: 36rpx;
+  padding-bottom: 20rpx;
+  font-weight: bold;
+  font-weight: bold;
+  background: white;
+  border-bottom: 1px solid #eeeeee;
+  padding-left: 3%;
+}
+
+.knowunit {
+  padding: 20rpx 0;
+}
+
+.unittit {
+  padding: 20rpx 0;
+  font-weight: bold;
+  display: flex;
+}
+
+.unittxt {
+  font-size: 26rpx;
+  line-height: 32rpx;
+  color: #585d6d;
+}
+
+.footer {
+  height: 100rpx;
+  line-height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+}
+
+.footbtn {
+  width: 50%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  line-height: 100rpx;
+}
+
+.callkefu {
+  background-color: #333744;
+  color: white;
+}
+
+.buys {
+  background-color: #e94403;
+  color: white;
+}
+
+.model {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(127, 127, 127, .4);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrcoco {
+  width: 70%;
+  height: 500rpx;
+  padding: 60rpx 5%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.qrtit {
+  font-size: 40rpx;
+  padding-bottom: 20rpx;
+}
+
+.qryzm {
+  font-size: 48rpx;
+  padding: 20rpx 0;
+}
+
+.candate {
+  color: #757a8a;
+}
+
+view {
+  word-break: break-all;
+  overflow: unset;
+}

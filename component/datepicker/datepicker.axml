@@ -1,0 +1,65 @@
+<view class="datepicker-w {{show?'show':'hidden'}}">
+  <view id="calendar">
+    <!-- 年份 月份 -->
+    <view class="month">
+      <view class="divultop">
+        <!--点击会触发pickpre函数，重新刷新当前日期 @click(vue v-on:click缩写) -->
+        <text class="arrow" onTap="pickPre">❮                                
+        </text>
+        <text class="year-month">
+          <text class="choose-year">{{ currentYear }}年                                                  
+          </text>
+          <text class="choose-month">{{ currentMonth }}月                                                  
+          </text>
+        </text>
+        <text class="arrow" onTap="pickNext">❯                                
+        </text>
+        </text>
+      </view>
+      <!-- 星期 -->
+      <view class="weekdays divul">
+        <text>一                                
+        </text>
+        <text>二                                
+        </text>
+        <text>三                                
+        </text>
+        <text>四                                
+        </text>
+        <text>五                                
+        </text>
+        <text style="color:red">六                                
+        </text>
+        <text style="color:red">日                                
+        </text>
+      </view>
+      <!-- 日期 -->
+      <view class="days divul">
+        <!-- 核心 v-for循环 每一次循环用<li>标签创建一天 -->
+        <!-- <text v-for="dayobject in days" @click="selDate(dayobject.hhlData)" :class="{notBook: !dayobject.marketAmount || dayobject.dailyStock === 0 || dayobject.day.getMonth()+1 !== currentMonth, active: dayobject.hhlday === selectedDate && dayobject.dailyStock !== 0 && dayobject.day.getMonth()+1 === currentMonth, notbookwhite: dayobject.day.getMonth()+1 !== currentMonth}"> -->
+        <text data-hhlData="{{item.hhlData}}" onTap="getDate" class="divli {{(!item.marketAmount || item.dailyStock === 0 || item.month !== currentMonth)?'notBook':''}} {{item.month !== currentMonth?'notbookwhite':''}}" a:for="{{days}}" key="{{item}}">
+          <view class="li-innner">
+            <!--本月-->
+            <!--如果不是本月  改变类名加灰色-->
+            <view style="color: red" a:if="{{item.dailyStock < 10 && item.dailyStock > 0 && item.month === currentMonth}}">                          余{{item.dailyStock}}                                              
+            </view>
+            <view a:if="{{item.month === currentMonth}}">{{item.date}}
+            </view>
+            <!-- <view v-if="dayobject.day.getMonth()+1 !== currentMonth" class="other-month"> -->
+            <!--{{dayobject.day.getDate()}}-->
+            <!-- </view> -->
+            <!--如果是本月  还需要判断是不是这一天-->
+            <!-- <view v-else>
+            {{dayobject.day.getDate()}}
+          </view> -->
+            <!--价格可订-->
+            <view class="price" a:if="{{item.marketAmount && (item.dailyStock > 0 || item.dailyStock === -1) && item.month === currentMonth}}">￥{{item.marketAmount}}                        
+            </view>
+            <!-- 不可订 -->
+            <view a:if="{{item.month === currentMonth && (!item.dailyStock || item.dailyStock === 0)}}">不可订                        
+            </view>
+          </view>
+        </text>
+      </view>
+    </view>
+  </view>

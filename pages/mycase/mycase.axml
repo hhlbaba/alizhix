@@ -1,0 +1,68 @@
+<view class="container">
+  <view class="tabbox">
+    <tabs
+      class="tabs"
+      tabs="{{tabs}}"
+      onTabClick="handleTabClick"
+      onChange="handleTabChange"
+      onPlusClick="handlePlusClick"
+      activeTab="{{activeTab}}"
+    >
+    </tabs>  
+  </view>
+  <view class="caseul">
+    <view class="case" onTap="casemsg" data-caseid="{{item.id}}" a:for="{{showlist}}">
+      <view class="caseoneline">
+        <view class="onelinekey">
+          <image src="../images/ticketicon.png" class="onelineicon"/>
+          门票
+        </view>
+        <view class="onelineval" a:if="{{item.orderStatus==1&&(item.refundStatus==0||item.refundStatus==5)}}">
+          待支付
+        </view>
+        <view class="onelineval" a:if="{{item.orderStatus==2&&(item.refundStatus==0||item.refundStatus==5)}}" style="color: #9ca0aa">
+          已取消
+        </view>
+        <view class="onelineval" a:if="{{(item.orderStatus==3||item.orderStatus==4)&&(item.refundStatus==0||item.refundStatus==5)}}" style="color: #0084ff">
+          待游玩
+        </view>
+        <view class="onelineval" a:if="{{(item.orderStatus==5||item.orderStatus==6||item.orderStatus==7)&&(item.refundStatus==0||item.refundStatus==5)}}" style="color: #262933">
+          已完成
+        </view>
+        <view class="onelineval" a:if="{{item.refundStatus==1||item.refundStatus==2}}" style="color: #262933">
+          退款中
+        </view>
+        <view class="onelineval" a:if="{{item.refundStatus==3||item.refundStatus==4}}" style="color: #262933">
+          已退款
+        </view>
+        <!-- <view class="onelineval" a:if="{{item.orderStatus==6}}">
+          已过期
+        </view> -->
+      </view>
+      <view class="casetwoline">
+        <image src="{{item.selldirectImgPath[0].url}}" class="adrpic"/>
+        <view class="adrtext">
+          <view class="adrname atxtlist">{{item.productName.substr(0,25)}}<text a:if="{{item.productName.length > 25}}">...</text></view>
+          <view class="playtimes atxtlist">游玩日期：{{item.departDate}}</view>
+          <view class="adrnumpri atxtlist"> <view class="anum">数量：{{item.productNum}}</view><view class="apri">￥{{item.orderAmount}}</view></view>
+        </view>
+      </view>
+      <view class="casebtns">
+        <button type="button" catchTap="buyagain" data-id='{{item.productId}}' class="againbtn casebtn" a:if="{{item.hhlState !== 1}}">再次预订</button>
+        <button type="button" catchTap="oddcase" data-ordersn='{{item.orderSn}}' class="quxiaobtn casebtn cancelbtn" a:if="{{item.hhlState === 1}}">取消</button>
+        <button type="button" catchTap="pay" data-id='{{item.id}}' data-ordersn='{{item.orderSn}}' class="zhifubtn casebtn paybtn" a:if="{{item.hhlState === 1}}">支付</button>
+        <button type="button" catchTap="msgagain" data-ordersn='{{item.orderSn}}'  class="againmsgbtn casebtn" a:if="{{item.hhlState === 3 && item.isSendSms === 0}}">重发短信</button>
+        <button type="button" catchTap="backmoney" data-isPartialRefund='{{item.isPartialRefund}}' data-verifyNum='{{item.verifyNum}}' data-name='{{item.productName}}' data-id='{{item.id}}' data-date='{{item.departDate}}' data-num='{{item.productNum}}' data-price='{{item.orderAmount}}' class="backbtn casebtn" a:if="{{(item.hhlState === 3 || item.hhlState === 4) && item.refundStatus !==5}}">申请退款</button>
+        <button type="button" catchTap="qrcode" data-qcode="{{item.verifyCode}}" data-qr="{{item.qrcodeImg}}" class="qrcodebtn casebtn codebtn" a:if="{{item.hhlState === 3}}">二维码</button>
+      </view>
+    </view>
+  </view>
+  <view class="model" a:if="{{qrbol}}" onTap="closebol">
+    <view class="qrcoco">
+      <view class="qrtit">入园二维码</view>
+      <image class="qrpic" src="{{qrimg}}" a:if="{{qrbol}}"/>    
+      <view class="qryzm">验证码：{{qrcode}}</view>
+      <!-- <view class="candate">有效日期：</view> -->
+    </view>
+  </view>
+</view>

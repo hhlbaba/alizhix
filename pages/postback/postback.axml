@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="coninner">
+    <view class="bname">{{showmsg.name}}</view>
+    <view class="blist">
+      <view class="bkey">游玩日期：</view>
+      <view class="bval">{{showmsg.date}}</view>
+    </view>
+    <view class="blist">
+      <view class="bkey">购买数量：</view>
+      <view class="bval">{{showmsg.num}}</view>
+    </view>
+    <view class="blist">
+      <view class="bkey">退款金额：</view>
+      <view class="bval">{{showmsg.price}}</view>
+    </view>
+    <view class="blist">
+      <view class="bkey">退款原因：</view>
+      <view class="bval section">
+  <picker onChange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      {{array[index]}}
+    </view>
+  </picker>
+
+        <!-- <picker onChange="bindPickerChange" value="{{index}}" range="{{array}}">
+        </picker>       -->
+      </view>
+    </view>
+    <view class="btost">提交后，请等待景区审核。审核通过，款项将退至您的原支付账号，实退金额可与景区沟通(请保持手机畅通，客服可能会联系您)。</view>
+  </view>
+  <button type="button" onTap="postback" class="postback">提交申请</button>
+</view>

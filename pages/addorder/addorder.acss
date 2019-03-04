@@ -1,0 +1,234 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f8fa;
+  padding-bottom: 110rpx;
+}
+
+.unit1 {
+  padding: 0 3%;
+  padding-top: 3%;
+  background-color: white;
+}
+
+.title {
+  line-height: 40rpx;
+}
+
+.oprice {
+  font-size: 44rpx;
+  color: red;
+  padding: 16rpx 0;
+}
+
+.toplist {
+  padding: 16rpx 0;
+  border-top: 1px solid #f6f6f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.otime {
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+
+.okey {
+  display: flex;
+}
+
+.moretime {
+  width: 160rpx;
+  height: 74rpx;
+  font-size: 26rpx;
+  line-height: 74rpx;
+  background-color: #0084ff;
+  color: white;
+  margin-left: 40rpx;
+  border-radius: 20rpx;
+}
+
+.onum {
+  display: flex;
+  border: 1px solid #e6e6e6;
+}
+
+.numbtn {
+  width: 70rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.numbtnmid {
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+}
+
+.numzhuyi {
+  font-size: 26rpx;
+  color: #9ca0aa;
+  padding-left: 20rpx;
+}
+
+.peplenum {
+  padding: 20rpx 3%;
+  color: #9ca0aa;
+}
+
+.pepletxt {
+  background-color: white;
+  padding: 0 3%;
+}
+
+.txtlist {
+  font-size: 28rpx;
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #f6f6f6;
+  align-items: center;
+}
+
+.listkey {
+  width: 140rpx;
+}
+
+.yzmlist {
+  display: flex;
+}
+
+.getyzmbtn {
+  width: 180rpx;
+  height: 70rpx;
+  color: #0084ff;
+  border: 1px solid #0084ff;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  line-height: 70rpx;
+}
+
+.valipt {
+  font-size: 28rpx;
+  width: 100%;
+}
+
+.nextbtn {
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  width: 100%;
+  border: none;
+  background-color: #e94403;
+  color: white;
+}
+
+.listval {
+  width: 100%;
+}
+
+.mask-w {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+}
+
+.oftenpeople {
+  height: 105rpx;
+  padding-left: 3%;
+  background-color: #fff;
+}
+
+.people {
+  line-height: 105rpx;
+  font-weight: bolder;
+  width: 150rpx;
+  float: left;
+}
+
+.peolist {
+  overflow: auto;
+  white-space: nowrap;
+  padding: 27rpx 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.plist {
+  display: inline-block;
+  margin-right: 20rpx;
+  border-radius: 3rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.nocsspeople {
+  border: 1px solid #dcdcdc;
+  border-radius: 10rpx;
+  padding: 10rpx;
+}
+
+.clickpeple {
+  border: 1px solid #0084ff;
+  color: #0084ff;
+  border-radius: 10rpx;
+  padding: 10rpx;
+}
+
+input::-webkit-input-placeholder {
+  color: red;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: red;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: red;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: red;
+}
+
+.book-box {
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  height: 1rem;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #fff;
+  border-top: 1px solid #f5f5f5;
+}
+
+.book-box .book-btn {
+  flex: 1;
+  background-color: #f55858;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1rem;
+  text-align: center;
+}
+
+.book-box .l {
+  flex: 1;
+  line-height: 1rem;
+  text-align: center;
+}
+
+.book-box .p {
+  color: red;
+  font-size: 18px;
+}

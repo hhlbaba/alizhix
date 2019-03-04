@@ -1,0 +1,71 @@
+.container{
+  flex-direction: column;
+}
+.bstop{
+  height: 300rpx;
+}
+.bstate{
+  height: 110rpx;
+  background-color: #0084ff;
+  color: white;
+  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 3%;
+}
+.bstxt{
+  background-color: white;
+  padding: 30rpx 3%;
+  border-bottom: 20rpx solid #f6f6f6;
+}
+.bslist{
+  display: flex;
+  padding: 10rpx;
+}
+.redpri{
+  color: red;
+}
+.bstree{
+  border-top: 1px solid #e6e6e6;
+  padding: 40rpx 3%;
+  background-color: white;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.bsstatetxt{
+  padding-bottom: 20rpx;
+  margin-bottom: 30rpx;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  justify-content: space-between;
+}
+.tlist{
+  border-left: 1px solid #b6b6b6;
+  padding-left: 40rpx;
+  margin-left: 20rpx;
+  position: relative;
+  padding-bottom: 50rpx;
+}
+.tltit{
+  padding-bottom: 10rpx;
+}
+.tltime{
+  padding-bottom: 10rpx;
+}
+.tlcall{
+
+}
+.lasttlist{
+  border: none;
+}
+.quan{
+  position: absolute;
+  left: -14rpx;
+  top: 0;
+  width: 20rpx;
+  height: 20rpx;
+  border: 1px solid #b6b6b6;
+  border-radius: 50%;
+  background-color: white;
+}

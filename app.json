@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/shopclose/shopclose",
+    "pages/login/login",
+    "pages/addorder/addorder",
+    "pages/order/order",
+    "pages/backstate/backstate",
+    "pages/postback/postback",
+    "pages/mine/mine",
+    "pages/mine/mine",
+    "pages/mycase/mycase",
+    "pages/adrlist/adrlist",
+    "pages/date/date",
+    "pages/nopro/nopro"
+  ],
+  "window": {
+    "defaultTitle": "首页"
+  },
+  "tabBar": {
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "icon": "/pages/images/tabbar1on.png",
+        "activeIcon": "/pages/images/tabbar1off.png",
+        "name": "首页"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "icon": "/pages/images/tabbar2off.png",
+        "activeIcon": "/pages/images/tabbar2on.png",
+        "name": "我的"
+      }
+    ]
+  }
+}

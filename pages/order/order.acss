@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100rpx;
+}
+
+.casestate {
+  background-color: #0084ff;
+  color: white;
+  height: 120rpx;
+  padding: 0 20rpx;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+}
+
+.tickmsg {
+  padding: 3%;
+  padding-bottom: 0;
+  background-color: white;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.nexticon {
+  width: 10rpx;
+  height: 20rpx;
+}
+
+.tickprice {
+  padding: 20rpx 0;
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.prired {
+  color: red;
+}
+
+.ticknum {
+  padding-left: 20rpx;
+  color: gray;
+}
+
+.qrmsg {
+  margin-top: 20rpx;
+  padding: 100rpx;
+  background-color: white;
+}
+
+.qrbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.backodicon {
+  position: absolute;
+  top: -50rpx;
+  right: 80rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.qrpic {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.yzm {
+  font-size: 40rpx;
+  padding: 14rpx 0;
+}
+
+.playermsg {
+  background-color: white;
+  border-top: 1px solid #e6e6e6;
+  margin-top: 20rpx;
+  padding: 5% 3%;
+}
+
+.playertit {
+  color: #9ca0aa;
+  font-size: 28rpx;
+  padding-bottom: 10rpx;
+}
+
+.pepleunit {
+  margin: 10rpx 0;
+}
+
+.plist {
+  display: flex;
+  padding: 10rpx 0;
+}
+
+.pkey {
+  width: 100rpx;
+}
+
+.msgplist {
+  flex-direction: column;
+}
+
+.casetxt {
+  margin: 10rpx 0;
+}
+
+.btnbox {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+}
+
+.botbtn {
+  width: 50%;
+  height: 100%;
+  line-height: 100rpx;
+  border: none;
+  color: white;
+  font-size: 28rpx;
+}
+
+.backbtn {
+  background-color: #333744;
+}
+
+.againbtn {
+  background-color: #e94403;
+}
+
+.backlist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+.backicon {
+  display: flex;
+  align-items: center;
+}
+
+.backimg {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}

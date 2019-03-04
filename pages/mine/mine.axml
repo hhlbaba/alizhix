@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="blueback"></view>
+  <view class="msgbox">
+    <image src="{{userpic}}" class="peplepic"/>
+    <view class="pname">{{username}}</view>
+    <view class="casecs">
+      <view class="casestate" onTap="orderlist" data-state='0'>
+        <image src="../images/back2.png" class="caseicon"/>
+        <view class="csname">全部订单</view>
+      </view>
+      <view class="casestate" onTap="orderlist" data-state='1'>
+        <image src="../images/back3.png" class="caseicon"/>
+        <view class="csname">待支付</view>
+      </view>
+      <view class="casestate" onTap="orderlist" data-state='2'>
+        <image src="../images/back4.png" class="caseicon"/>
+        <view class="csname">待游玩</view>
+      </view>
+      <view class="casestate" onTap="orderlist" data-state='3'>
+        <image src="../images/back1.png" class="caseicon"/>
+        <view class="csname">退款</view>
+      </view>
+    </view>
+  </view>
+  <view class="botbox">
+    <view class="blist" catchTap="callkefu">
+      <view class="bkey"><image src="../images/minekefu.png" class="bicon"/>找客服</view>
+      <view><image src="../images/next.png" class="minenexticon"/></view>
+    </view>
+  </view>
+</view>

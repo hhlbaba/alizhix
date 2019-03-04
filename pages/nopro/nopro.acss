@@ -1,0 +1,64 @@
+.noProduct-app {
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.topbox {
+  font-size: 21px;
+  text-align: center;
+  color: #262933;
+}
+
+.toptext {
+  margin-top: 140rpx;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+
+image {
+  background-size: 296rpx 214rpx 100% 100%;
+}
+
+.money {
+  color: #1c1414;
+  text-align: center;
+  font-size: 17px;
+  line-height: 58rpx;
+  margin-top: 20rpx;
+}
+
+.hint {
+  color: #9ca0aa;
+  font-size: 13px;
+  line-height: 54rpx;
+}
+
+.footer {
+  width: 100%;
+  height: 80rpx;
+  margin-top: 180rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  height: 80rpx;
+  width: 580rpx;
+  background: #1048ff;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.time {
+  margin-top: 340rpx;
+  color: #9ca0aa;
+  font-size: 12px;
+  line-height: 42rpx;
+  text-align: center;
+}

@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "填写订单",
+  "usingComponents": {
+    "datepicker": "../../component/datepicker/datepicker"
+  }
+}

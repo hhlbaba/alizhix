@@ -1,0 +1,6 @@
+<view class="noProduct-app" id="vue">
+  <view class="topbox">
+    <view class="toptext"><image src="/pages/images/shopClose.png" mode="" /></view>
+    <view class="money">很抱歉！该店铺现在不能提供服务</view>
+  </view>
+</view>

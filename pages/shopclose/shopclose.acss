@@ -1,0 +1,29 @@
+.noProduct-app {
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.topbox {
+  font-size: 24px;
+}
+
+.toptext {
+  margin-top: 140rpx;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+
+image {
+  background-size: auto 100%;
+  background-position: center;
+}
+
+.money {
+  color: #1c1414;
+  text-align: center;
+  font-size: 17px;
+  line-height: 58rpx;
+  margin-top: 20rpx;
+}

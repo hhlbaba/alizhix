@@ -1,0 +1,101 @@
+<view class="container">
+  <view class="casestate">订单状态：
+        <view class="onelineval" a:if="{{showmsg.orderStatus==1&&(showmsg.refundStatus==0||showmsg.refundStatus==5)}}">
+          待支付
+        </view>
+        <view class="onelineval" a:if="{{showmsg.orderStatus==2&&(showmsg.refundStatus==0||showmsg.refundStatus==5)}}">
+          已取消
+        </view>
+        <view class="onelineval" a:if="{{(showmsg.orderStatus==3||showmsg.orderStatus==4)&&(showmsg.refundStatus==0||showmsg.refundStatus==5)}}">
+          待游玩
+        </view>
+        <view class="onelineval" a:if="{{(showmsg.orderStatus==5||showmsg.orderStatus==6||showmsg.orderStatus==7)&&(showmsg.refundStatus==0||showmsg.refundStatus==5)}}">
+          已完成
+        </view>
+        <view class="onelineval" a:if="{{showmsg.refundStatus==1||showmsg.refundStatus==2}}">
+          退款中
+        </view>
+        <view class="onelineval" a:if="{{showmsg.refundStatus==3||showmsg.refundStatus==4}}">
+          已退款
+        </view>    
+        <!-- <view class="onelineval" a:if="{{showmsg.orderStatus==6}}">
+          已过期
+        </view>     -->
+  </view>
+  <view class="tickmsg">
+    <view class="tickname">{{showmsg.productName}}</view>
+    <view class="tickprice"><view class="prired">￥{{showmsg.orderAmount}}</view><view class="ticknum">(￥{{showmsg.orderMarketAmount}}*{{showmsg.productNum}})</view></view>
+    <view class="backlist" onTap="gobackmsg" a:if="{{showmsg.refundStatus!==0}}">
+      <view class="backicon">
+        <image src="/pages/images/od1.png" class="backimg"/>
+        退款进度
+      </view>
+      <view class="nexticon"><image src="../images/next.png" class="nexticon"/></view>
+    </view>
+  </view>
+  <view class="qrmsg" a:if="{{showmsg.orderStatus!==1&&showmsg.orderStatus!==2}}">
+    <view class="qrbox">
+      <image src="{{showmsg.qrcodeImg}}" class="qrpic"  a:if="{{(showmsg.orderStatus==3||showmsg.orderStatus==4)&&(showmsg.refundStatus==0||showmsg.refundStatus==5) && showmsg.verifyCode}}"/>
+      <image src="../images/od3.png" style='width:500rpx' class="qrpic" a:if="{{(showmsg.orderStatus==5||showmsg.orderStatus==6||showmsg.orderStatus==7)&&(showmsg.refundStatus==0||showmsg.refundStatus==5) && showmsg.verifyCode}}"/>
+      <image src="../images/od4.png" style='width:500rpx' class="qrpic" a:if="{{(showmsg.refundStatus==1||showmsg.refundStatus==2) && showmsg.verifyCode}}"/>
+      <image src="../images/od5.png" style='width:500rpx' class="qrpic" a:if="{{(showmsg.refundStatus==3||showmsg.refundStatus==4) && showmsg.verifyCode}}"/>
+      <view class="yzm">验证码：{{showmsg.verifyCode}}</view>
+      <view class="qrdate">有效日期：{{showmsg.indate}}</view>
+    </view>
+  </view>
+  <view class="playermsg">
+    <view class="playertit">游客信息</view>
+    <!-- <view class="pepleunit">
+      <view class="plist">
+        <view class="pkey">游客1</view>
+        <view class="pval">{{showmsg.contactsName}}</view>  
+      </view>
+      <view class="plist">
+        <view class="pkey"></view>
+        <view class="pval">{{showmsg.contactsMobile}}</view>  
+      </view>
+      <view class="plist">
+        <view class="pkey"></view>
+        <view class="pval">{{showmsg.}}</view>  
+      </view>
+    </view> -->
+    <view class="pepleunit" a:if="{{showmsg.touristInfo.length}}" a:for="{{showmsg.touristInfo}}" a:for-index="index">
+      <view class="plist">
+        <view class="pkey">游客{{index+1}}</view>
+        <view class="pval">{{item.name}}</view>
+      </view>
+      <view class="plist" a:if="{{item.mobile}}">
+        <view class="pkey"></view>
+        <view class="pval">{{item.mobile}}</view>
+      </view>      
+      <view class="plist" a:if="{{item.idCard}}">
+        <view class="pkey"></view>
+        <view class="pval">{{item.idCard}}</view>
+      </view>
+    </view>
+    <view class="playertit">订单信息</view>
+    <view class="plist msgplist">
+      <view class="casetxt">订单编号：{{showmsg.orderSn}}</view>
+      <!-- <view class="casetxt" a:if="{{showmsg.indate}}">有效期：{{showmsg.indate}}</view> -->
+      <view class="casetxt">下单时间：{{showmsg.placeOrderTime.replace('.0','')}}</view>
+      <view class="casetxt" a:if="{{showmsg.payTime}}">支付时间：{{showmsg.payTime.replace('.0','')}}</view>
+      <!-- <view class="casetxt" a:if="{{showmsg.refundStatus==0}}">退款状态：未申请</view> -->
+      <!-- <view class="casetxt" a:if="{{showmsg.refundStatus==1}}">退款状态：申请部分退款</view>
+      <view class="casetxt" a:if="{{showmsg.refundStatus==2}}">退款状态：申请全部退款</view>
+      <view class="casetxt" a:if="{{showmsg.refundStatus==3}}">退款状态：已部分退款</view>
+      <view class="casetxt" a:if="{{showmsg.refundStatus==4}}">退款状态：已退款</view>
+      <view class="casetxt" a:if="{{showmsg.refundStatus==5}}">退款状态：退款失败</view>
+      <view class="casetxt" a:if="{{showmsg.result==0}}">退款结果:待处理</view>
+      <view class="casetxt" a:if="{{showmsg.result==1}}">退款结果:成功</view>
+      <view class="casetxt" a:if="{{showmsg.result==2}}">退款结果:失败</view> -->
+      <!-- <view class="casetxt">支付方式：支付宝</view> -->
+    </view>
+  </view>
+  <view class="btnbox">
+    <button type="button" onTap="oddcase" data-ordersn='{{showmsg.orderSn}}' class="backbtn botbtn" a:if="{{showmsg.orderStatus==1&&(showmsg.refundStatus==0||showmsg.refundStatus==5)}}">取消</button>
+    <button type="button" onTap="backurl" class="backbtn botbtn" a:else>返回我的订单</button>
+    <button type="button" onTap="pay" data-id='{{showmsg.id}}' data-ordersn='{{showmsg.orderSn}}' class="againbtn botbtn" a:if="{{showmsg.orderStatus==1&&(showmsg.refundStatus==0||showmsg.refundStatus==5)}}">支付</button>
+    <button type="button" onTap="backmoney" data-isPartialRefund='{{showmsg.isPartialRefund}}' data-verifyNum='{{showmsg.verifyNum}}' data-name='{{showmsg.productName}}' data-id='{{showmsg.id}}' data-date='{{showmsg.departDate}}' data-num='{{showmsg.productNum}}' data-price='{{showmsg.orderAmount}}' class="againbtn botbtn" a:elif="{{(showmsg.orderStatus==3||showmsg.orderStatus==4)&&(showmsg.refundStatus==0||showmsg.refundStatus==5)}}">申请退款</button>
+    <button type="button" onTap="buyagain" data-id="{{showmsg.productId}}" class="againbtn botbtn" a:else>再次预订</button>
+  </view>
+</view>

@@ -1,0 +1,172 @@
+.container {
+  background-color: #e6e6e6;
+  flex-direction: column;
+}
+
+.tabbox {
+  width: 100%;
+}
+
+.tab-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.caseul {
+  display: flex;
+  flex-direction: column;
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  background-color: white;
+  margin-top: 14rpx;
+}
+
+.caseoneline {
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+  align-items: center;
+}
+
+.onelinekey {
+  display: flex;
+  align-items: center;
+}
+
+.onelineval {
+  color: #e94403;
+}
+
+.onelineicon {
+  width: 40rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
+.casetwoline {
+  padding: 50rpx 0;
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.adrpic {
+  width: 260rpx;
+  height: 160rpx;
+  margin-right: 30rpx;
+}
+
+.adrtext {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.atxtlist {
+  width: 100%;
+}
+
+.adrname {
+  /* display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  padding-bottom: 10rpx */
+}
+
+.playtimes {
+  color: gray;
+  padding: 10rpx 0;
+}
+
+.adrnumpri {
+  color: gray;
+  justify-content: space-between;
+  display: flex;
+}
+
+.apri {
+  color: red;
+}
+
+.casebtns {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-top: 20rpx;
+}
+
+.casebtn {
+  padding: 4rpx 20rpx;
+  height: 60rpx;
+  border-radius: 100rpx;
+  border: 1px solid black;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 14rpx;
+}
+
+.paybtn {
+  color: #e94403;
+  border-color: #e94403;
+}
+
+.cancelbtn {
+  color: #757a8a;
+  border-color: #757a8a;
+}
+
+.codebtn {
+  color: #0084ff;
+  border-color: #0084ff;
+}
+
+.model {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(127, 127, 127, .4);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrcoco {
+  width: 70%;
+  height: 500rpx;
+  padding: 60rpx 5%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.qrpic {
+  width: 70%;
+  height: 300rpx;
+}
+
+.qrtit {
+  font-size: 40rpx;
+  padding-bottom: 20rpx;
+}
+
+.qryzm {
+  font-size: 48rpx;
+  padding: 20rpx 0;
+}
+
+.candate {
+  color: #757a8a;
+}

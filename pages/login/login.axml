@@ -1,0 +1,18 @@
+<view class="container">
+   <view class="loginlogo">登录/注册</view>
+   <view class="msgbox">
+     <view class="msgline">
+       <input type="number" maxlength="11" value="{{phonenum}}" onInput="phonenum" placeholder="请输入手机号" class="phoneipt"/>
+     </view>
+     <view class="msgline">
+       <input type="text" value="{{iptpicyzm}}" onInput="picyzm" placeholder="请输入验证码" class="phoneipt"/>
+        <image src="{{picyzm}}" class="lineval" onTap="changepicyzm"/>
+     </view>
+     <view class="msgline">
+      <input type="number" maxlength="6" value="{{yzm}}" onInput="yzm" placeholder="请输入动态码" class="phoneipt"/>
+      <button type="button" disabled="{{yzmable}}" onTap="postyzm" class="getyzm" >{{btntxt}}</button>
+     </view>
+     <button type="button" onTap="nextgo" class="nextbtn" a:if="{{phonenum && iptpicyzm && yzm}}">下一步</button>
+     <button type="button" class="nextbtn dis" a:else>下一步</button>
+   </view>
+</view>

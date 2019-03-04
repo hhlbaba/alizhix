@@ -1,0 +1,29 @@
+<view class="container">
+  <swiper
+    indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}"
+    interval="{{interval}}"
+  >
+    <swiper-item a:for="{{swiperlist}}">
+      <image src="{{item.url}}" class="topswiperpic"/>
+    </swiper-item>
+  </swiper>
+  <!-- <view class="ticketunit">
+    <view class="tunit" onTap="clickicon" data-csid="">全部<image src="../images/indexunit3off.png" a:if="{{chooseicon==''}}" class="indexicon"/><image src="../images/indexunit3on.png" class="indexicon" a:if="{{chooseicon!=''}}"/></view>
+    <view class="tunit" onTap="clickicon" data-csid="1">门票<image src="../images/indexunit1off.png" class="indexicon" a:if="{{chooseicon==1}}"/><image src="../images/indexunit1on.png" class="indexicon" a:if="{{chooseicon!=1}}"/></view>
+    <view class="tunit" onTap="clickicon" data-csid="2">套票<image src="../images/indexunit2off.png"  class="indexicon" a:if="{{chooseicon==2}}"/><image src="../images/indexunit2on.png" class="indexicon" a:if="{{chooseicon!=2}}"/></view>
+  </view> -->
+  <view class="adrul">
+    <view class="adrlist" a:for="{{adrlist}}" onTap="goadr" data-id="{{item.id}}">
+      <view class="imgbox">
+        <image a:for="{{item.imagePath}}" a:if="{{item.mainImg}}" src="{{item.url}}" class="adrpic off"/>
+        <image a:if="{{!item.mainImg}}" src="{{item.imagePath[0].url}}" class="adrpic no"/>
+      </view>
+      <view class="adricon" a:if="{{item.qrcode==1}}">扫码入园</view>
+      <view class="adrtext">
+        <view class="adrtit">{{item.productName.substr(0,40)}}<text a:if="{{item.productName.length > 30}}">...</text></view>
+        <view class="adrprice"><view class="pred">￥{{item.marketAmount}}</view>起 <view class="pgray" a:if="{{item.storeAmount!==item.marketAmount}}">￥{{item.storeAmount}}</view></view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+.container {
+  flex-direction: column;
+  background-color: white;
+}
+
+.loginlogo {
+  font-size: 44rpx;
+  font-weight: bolder;
+  height: 300rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.msgbox {
+  padding: 0 10%;
+}
+
+.msgline {
+  border-bottom: 1px solid black;
+  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+}
+
+.phoneipt {
+  border: none;
+  display: flex;
+  flex: 1;
+}
+
+.lineval {
+  width: 160rpx;
+  height: 60rpx;
+}
+
+.getyzm {
+  border: 1px solid #0084ff;
+  color: #0084ff;
+  border-radius: 6rpx;
+  height: 60rpx;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  padding: 10rpx;
+  width: 160rpx;
+}
+
+.nextbtn {
+  margin-top: 100rpx;
+  background-color: #0084ff;
+  color: white;
+  border: nonoe;
+  border-radius: 8rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.dis {
+  background-color: #c1c2c5;
+}

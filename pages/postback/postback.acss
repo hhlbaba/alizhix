@@ -1,0 +1,40 @@
+.container{
+  flex-direction: column;
+  background-color: white;
+}
+.coninner{
+  padding: 3%;
+}
+.bname{
+  line-height: 34rpx;
+  padding-bottom: 40rpx;
+  border-bottom: 1px solid #f7f8fa;
+}
+.blist{
+  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+}
+.bkey{
+ width: 160rpx;
+}
+.btost{
+  font-size: 26rpx;
+  color: #9ca0aa;
+  padding-top: 40rpx;
+}
+.postback{
+  position: fixed;
+  bottom: 0;
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  width: 100%;
+  height:100rpx;
+  line-height: 100rpx;
+}
+.picker{
+  border: 1px solid #e6e6e6;
+  padding: 20rpx;
+  width: 400rpx;
+}

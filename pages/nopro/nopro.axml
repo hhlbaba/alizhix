@@ -1,0 +1,10 @@
+<view class="noProduct-app" id="vue">
+  <view class="topbox">
+    <view class="toptext"><image src="/pages/images/noProduct.png" mode="" /></view>
+    <view class="money">产品不存在</view>
+    <view class="hint">如有疑问，请联系客服</view>
+  </view>
+  <view class="footer">
+    <button class="btn" onTap="toIndex">看看其他产品</button>
+  </view>
+</view>

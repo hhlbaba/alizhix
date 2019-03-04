@@ -1,0 +1,70 @@
+<view class="container">
+  <view class="unit1">
+    <view class="title">
+      {{ticket.ticketName}}
+    </view>
+    <view class="oprice">￥{{tickprice}}</view>
+    <view class="playtime toplist">
+      <view class="okey">游玩时间</view>
+      <view class="otime">{{playtime}}<button type="button" class="moretime" onTap="triggerCalendar">更多日期</button></view>
+    </view>
+    <view class="buynum toplist">
+      <view class="okey">数量 
+        <view class="numzhuyi" a:if="{{minCanBook}}">最少预订{{minCanBook}}张<text a:if="{{maxCanBook !== 0 && maxCanBook > minCanBook}}">，最多可预订{{maxCanBook}}张</text></view>
+        </view>
+      <view class="onum">
+        <view class="numbtn" onTap="numodd">-</view>
+        <view class="numbtn numbtnmid">{{num}}</view>
+        <view class="numbtn" onTap="numadd">+</view>
+      </view>
+    </view>
+  </view>
+  <view class="oftenpeople">
+    <text class="people">
+      常用旅客:
+    </text>
+    <view class="peolist">
+        <text class="plist" a:for="{{oftenlist}}" a:for-index="index" onTap="oftenpeple" data-index="{{index}}" data-list="{{item}}">
+          <text a:if="{{!item.ischoose}}" class="nocsspeople">{{item.name}}</text>
+          <text a:if="{{item.ischoose}}" class="clickpeple">{{item.name}}</text>
+        </text>
+    </view>
+    
+  </view>
+  <view class="unit2 pepleunit">
+    <view class="peplenum">游客1(取票人)</view>
+    <view class="pepletxt">
+      <view class="txtlist">
+        <view class="listkey">姓名</view>
+        <view class="listval"><input type="text" onInput="onename" value="{{userarr[0].name}}" placeholder="请输入姓名" class="valipt"/></view>
+      </view>
+      <view class="txtlist">
+        <view class="listkey">手机号码</view>
+        <view class="listval"><input type="number" maxlength="11" onInput="onephone" value="{{userarr[0].mobile}}"  placeholder="用于接收入园凭证" class="valipt"/></view>
+      </view>
+      <view class="txtlist" a:if="{{sdata.touristInfoType != 0}}">
+        <view class="listkey">身份证号</view>
+        <view class="listval"><input type="text"  onInput="oneidCard" value="{{userarr[0].idCard}}"  placeholder="请输入身份证号码" class="valipt"/></view>
+      </view>
+    </view>
+  </view>
+  <view class="unit2 pepleunit" a:for="{{userarr}}" a:if="{{sdata.touristInfoType == 2&&userarr.length>1&&index!=0}}" a:for-index="index">
+    <view class="peplenum">游客{{index+1}}</view>
+    <view class="pepletxt">
+      <view class="txtlist">
+        <view class="listkey">姓名</view>
+        <view class="listval"><input type="text"value="{{item.name}}" onInput="nameipt" data-index="{{index}}" placeholder="请输入姓名" class="valipt"/></view>
+      </view>
+      <view class="txtlist">
+        <view class="listkey">身份证号</view>
+        <view class="listval"><input type="number" value="{{item.idCard}}" onInput="idCardipt" data-index="{{index}}" placeholder="请输入身份证号码" class="valipt"/></view>
+      </view>
+    </view>
+  </view>
+  <datepicker show="{{show}}" priceCalendar="{{priceCalendar}}" onGetDate="onGetDate"/>
+  <view class="mask-w {{show?'show':'hidden'}}" onTap="triggerCalendar"></view>
+  <view class="book-box">
+    <view class="l">总价：<text class="p">￥{{tickprice * num}}</text></view>
+    <view class="book-btn" id="submit" onTap="buynow">提交订单</view>
+  </view>
+</view>

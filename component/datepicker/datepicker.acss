@@ -1,0 +1,157 @@
+ * {
+   box-sizing: border-box;
+ }
+
+ .show{
+   display: block;
+ }
+
+ .hidden{
+   display: none;
+ }
+
+ #calendar {
+   position: fixed;
+   top: 1.5rem;
+   left: 0;
+   right: 0;
+   z-index: 10;
+ }
+
+ .divul {
+   list-style-type: none;
+ }
+
+ body {
+   font-family: Verdana, sans-serif;
+   background: #E8F0F3;
+ }
+
+ #calendar {
+   width: 90%;
+   margin: 0 auto;
+   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+ }
+
+ .month {
+   width: 100%;
+   background-color: rgb(245, 245, 245);
+ }
+
+ .month .divultop {
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .year-month {
+   /*display: flex;*/
+   align-items: center;
+   justify-content: space-around;
+ }
+
+ .year-month:hover {
+   background: rgba(150, 2, 12, 0.1);
+ }
+
+ .choose-year {
+   line-height: 40px;
+   padding-left: 20px;
+   padding-right: 20px;
+ }
+
+ .choose-month {
+   text-align: center;
+   font-size: 16px;
+ }
+
+ .arrow {
+   padding: 10px 20px;
+ }
+
+ .arrow {
+   color: #252525;
+   font-size: 16px;
+   text-transform: uppercase;
+   letter-spacing: 3px;
+ }
+
+ .weekdays {
+   margin: 0;
+   padding: 10px 0;
+   background-color: white;
+   display: flex;
+   flex-wrap: wrap;
+   color: #252525;
+   justify-content: space-around;
+ }
+
+ .weekdays .divli {
+   display: inline-block;
+   width: 13.6%;
+   text-align: center;
+ }
+
+ .days {
+   padding: 0;
+   background: #FFFFFF;
+   margin: 0;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+ }
+
+ .days .divli {
+   list-style-type: none;
+   display: inline-block;
+   width: 14.2%;
+   text-align: center;
+   font-size: 12px;
+   color: #000;
+   border-left: 1px solid #f0f0f0;
+   border-bottom: 1px solid #f0f0f0;
+   height: 60px;
+   position: relative;
+ }
+
+ .days .active {
+   background-color: #1048ff;
+   color: #fff !important;
+ }
+
+ .days .divli .li-innner {
+   position: absolute;
+   width: 100%;
+   left: 50%;
+   top: 50%;
+   -webkit-transform: translate(-50%, -50%);
+   -moz-transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   -o-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+ }
+
+ .days .divli .price {
+   color: red;
+ }
+
+ .days .active .price {
+   color: #fff !important;
+ }
+
+ .days .notBook {
+   background-color: rgb(245, 245, 245);
+ }
+
+ .days .divli .other-month {
+   color: gainsboro;
+ }
+
+ .days .divli .other-month+span {
+   color: gainsboro;
+ }
+
+ .notbookwhite {
+   background-color: #fff !important;
+ }
