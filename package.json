@@ -1,0 +1,8 @@
+{
+  "name": "alizhix",
+  "version": "1.0.0",
+  "description": "alizhix",
+  "dependencies": {
+    "mini-antui": "^0.4.19"
+  }
+}
