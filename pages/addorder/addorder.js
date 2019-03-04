@@ -483,7 +483,7 @@ Page({
     }
   },
   numadd() {
-    if (this.data.num < this.data.maxCanBook) {
+    if (this.data.num < this.data.maxCanBook || this.data.maxCanBook === 0) {
       this.setData({
         num: this.data.num + 1,
       })
