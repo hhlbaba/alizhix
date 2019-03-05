@@ -6,15 +6,20 @@ Component({
     currentYear: 2000,
     currentWeek: 1,
     days: [],
+    selectedDay: '',//选中的日期
   },
   props: {
     hhl: '',
     show: false,
     priceCalendar: [],
     onGetDate: () => { },
+    selectedDayProp: '',
   },
   didMount() { },
   didUpdate() {
+    this.setData({
+        selectedDay: this.props.selectedDayProp
+    });
     this.initData(this.props.priceCalendar[0].sellDate.substr(0,7));
   },
   didUnmount() { },

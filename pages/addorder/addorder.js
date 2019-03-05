@@ -70,7 +70,6 @@ Page({
       },
       method: 'get',
       success: (res) => {
-        console.log(res)
         if (res.data.code == 0) {
           if (res.data.data.length > 0) {
             for (var i = 0; i < res.data.data.length; i++) {
