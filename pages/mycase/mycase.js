@@ -1,10 +1,26 @@
 Page({
   data: {
     tabs: [
-      { title: '全部订单' },
-      { title: '待支付' },
-      { title: '待游玩' },
-      { title: '退款' },
+      {
+        title: '全部订单',
+        // badgeType: 'text',
+        // badgeText: '1',
+      },
+      {
+        title: '待支付',
+        // badgeType: 'text',
+        // badgeText: '2',
+      },
+      {
+        title: '待游玩',
+        // badgeType: 'text',
+        // badgeText: '3',
+      },
+      {
+        title: '退款',
+        // badgeType: 'text',
+        // badgeText: '4',
+      },
     ],
     activeTab: 0,
     showlist: [],   //列表
@@ -117,7 +133,7 @@ Page({
     }
   },
   oddcase(res) {
-    if(!confirm('确定要取消订单吗?')) return;
+    if (!confirm('确定要取消订单吗?')) return;
 
     var _self = this;
     my.httpRequest({
@@ -180,7 +196,7 @@ Page({
     })
   },
   msgagain(res) {
-    if(res.target.dataset.smscount == 3){
+    if (res.target.dataset.smscount == 3) {
       my.showToast({
         content: '重发次数已用完',
         duration: 2000,
