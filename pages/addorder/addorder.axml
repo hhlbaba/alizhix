@@ -61,7 +61,14 @@
       </view>
     </view>
   </view>
-  <datepicker show="{{show}}" priceCalendar="{{priceCalendar}}" onGetDate="onGetDate"/>
+
+  <datepicker 
+  show="{{show}}"
+  priceCalendar="{{priceCalendar}}" 
+  onGetDate="onGetDate"
+  selectedDayProp="{{playtime}}"
+  />
+
   <view class="mask-w {{show?'show':'hidden'}}" onTap="triggerCalendar"></view>
   <view class="book-box">
     <view class="l">总价：<text class="p">￥{{(tickprice*10) * (num*10)/100}}</text></view>

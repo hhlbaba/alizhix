@@ -37,7 +37,12 @@
       <view class="days divul">
         <!-- 核心 v-for循环 每一次循环用<li>标签创建一天 -->
         <!-- <text v-for="dayobject in days" @click="selDate(dayobject.hhlData)" :class="{notBook: !dayobject.marketAmount || dayobject.dailyStock === 0 || dayobject.day.getMonth()+1 !== currentMonth, active: dayobject.hhlday === selectedDate && dayobject.dailyStock !== 0 && dayobject.day.getMonth()+1 === currentMonth, notbookwhite: dayobject.day.getMonth()+1 !== currentMonth}"> -->
-        <text data-hhlData="{{item.hhlData}}" onTap="getDate" class="divli {{(!item.marketAmount || item.dailyStock === 0 || item.month !== currentMonth)?'notBook':''}} {{item.month !== currentMonth?'notbookwhite':''}}" a:for="{{days}}" key="{{item}}">
+        <text 
+        data-hhlData="{{item.hhlData}}" 
+        onTap="getDate" 
+        class="divli {{(!item.marketAmount || item.dailyStock === 0 || item.month !== currentMonth)?'notBook':''}} {{item.month !== currentMonth?'notbookwhite':''}} {{item.hhlday === selectedDay ? 'active' : ''}}" 
+        a:for="{{days}}" key="{{item}}"
+        >
           <view class="li-innner">
             <!--本月-->
             <!--如果不是本月  改变类名加灰色-->

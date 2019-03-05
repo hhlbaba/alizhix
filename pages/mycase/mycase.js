@@ -117,6 +117,8 @@ Page({
     }
   },
   oddcase(res) {
+    if(!confirm('确定要取消订单吗?')) return;
+
     var _self = this;
     my.httpRequest({
       url: this.data.baseurl + '/api/order/direct/order/cancel', // 目标服务器url
@@ -166,11 +168,11 @@ Page({
         if (res.data.code === 0) {
           if (res.data.data === 1) {
             my.navigateTo({
-              url: '../addorder/addorder?tickid=' + e.target.dataset.id
+              url: '../adrlist/adrlist?id=' + e.target.dataset.id
             });
           } else {
             my.navigateTo({
-              url: '../noProduct/noProduct'
+              url: '../nopro/nopro'
             });
           }
         }
@@ -178,21 +180,32 @@ Page({
     })
   },
   msgagain(res) {
-    my.httpRequest({
-      url: this.data.baseurl + '/api/order/direct/order/resendMessage',
-      headers: { 'Authorization': my.getStorageSync({ key: 'token' }).data, 'content-type': 'application/json;charset=UTF-8' },
-      method: 'post',
-      data: { 'orderSn': res.target.dataset.ordersn },
-      success: function (res) {
-        if (res.data.code == 0) {
-          my.showToast({
-            type: 'success',
-            content: '发送成功',
-            duration: 2000,
-          });
+    if(res.target.dataset.smscount == 3){
+      my.showToast({
+        content: '重发次数已用完',
+        duration: 2000,
+      });
+      return
+    }
+
+    var r = confirm("一个订单最多可发3次, 确定要重发短信吗?")
+    if (r) {
+      my.httpRequest({
+        url: this.data.baseurl + '/api/order/direct/order/resendMessage',
+        headers: { 'Authorization': my.getStorageSync({ key: 'token' }).data, 'content-type': 'application/json;charset=UTF-8' },
+        method: 'post',
+        data: { 'orderSn': res.target.dataset.ordersn },
+        success: function (res) {
+          if (res.data.code == 0) {
+            my.showToast({
+              type: 'success',
+              content: '发送成功',
+              duration: 2000,
+            });
+          }
         }
-      }
-    })
+      })
+    }
   },
   backmoney(res) {
     console.log(res.target.dataset);

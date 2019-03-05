@@ -34,6 +34,9 @@ Page({
     })
     this.getoften();
   },
+  onUnload(){
+    clearInterval(this._timer);
+  },
   onShow() {
     var openid = my.getStorageSync({ key: 'userid' }).data; // 缓存数据的key
     var that = this;
@@ -67,7 +70,6 @@ Page({
       },
       method: 'get',
       success: (res) => {
-        console.log(res)
         if (res.data.code == 0) {
           if (res.data.data.length > 0) {
             for (var i = 0; i < res.data.data.length; i++) {
@@ -298,36 +300,31 @@ Page({
       return false;
     }
 
-    var regidCard = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
-    var regphone = /^1(3|4|5|7|8)\d{9}$/;
-    var regname = /^([\u4e00-\u9fa5]){2,7}$/;
+    //游客验证
     for (var y = 0; y < this.data.userarr.length; y++) {
-      if (y == 0) {
-        if (!regphone.test(this.data.userarr[y].mobile)) {
-          my.showToast({
-            content: '游客' + (y + 1) + '手机号输入有误',
-            duration: 2000,
-          });
-          return false;
+      var obj = this.data.userarr[y];
+      if(!this.checkName({num: y, val: obj.name})) return false;
+
+      if(this.data.sdata.touristInfoType === 0){
+        //无需填写
+        if(!this.checkPhone({num: y, val: obj.mobile})) return false;
+      }
+      if(this.data.sdata.touristInfoType === 1){
+        //只需要输入一个客人资料
+        if(!this.checkPhone({num: y, val: obj.mobile})) return false;
+        if(!this.checkId({num: y, val: obj.idCard})) return false;
+      }
+      if(this.data.sdata.touristInfoType === 2){
+        //要求输入每个客人资料
+        if(y === 0){
+          if(!this.checkPhone({num: y, val: obj.mobile})) return false;
         }
-      } else {
-        console.log('进来了')
-        if (!regidCard.test(this.data.userarr[y].idCard)) {
-          my.showToast({
-            content: '游客' + (y + 1) + '身份证号输入有误',
-            duration: 2000,
-          });
-          return false;
-        }
-        if (!regname.test(this.data.userarr[y].name)) {
-          my.showToast({
-            content: '游客' + (y + 1) + '的姓名输入有误',
-            duration: 2000,
-          });
-          return false;
-        }
+        if(!this.checkId({num: y, val: obj.idCard})) return false;
       }
     }
+
+    if(!this.checkIdRepeat(this.data.userarr)) return false;
+
     my.showLoading({
       content: '下单中请稍后',
     });
@@ -354,6 +351,107 @@ Page({
       },
     });
   },
+  //验证姓名
+  checkName({num, val}) {
+    if(!val) {
+      my.showToast({
+        content: '姓名不得为空',
+        duration: 2000,
+      });
+      return false;
+    }
+
+    var regname = /^([\u4e00-\u9fa5]){2,7}$/;
+    if (!regname.test(val)) {
+      my.showToast({
+        content: '请输入2-8字以内的姓名',
+        duration: 2000,
+      });
+      return false;
+    }
+
+    return true
+  },
+  //验证手机
+  checkPhone({num, val}) {
+    var regphone = /^1(3|4|5|7|8)\d{9}$/;
+    if (!regphone.test(val)) {
+      my.showToast({
+        content: '游客' + (num + 1) + '的手机号错误',
+        duration: 2000,
+      });
+      return false;
+    }
+
+    return true
+  },
+  //验证身份证
+  checkId({ num, val }) {
+    if (!val) {
+      my.showToast({
+        content: '游客' + (num + 1) + '身份证号不得为空',
+        duration: 2000,
+      });
+      return false;
+    }
+
+    var regidCard = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
+    if (!regidCard.test(val)) {
+      my.showToast({
+        content: '游客' + (num + 1) + '身份证号错误',
+        duration: 2000,
+      });
+      return false;
+    }
+
+    return true
+  },
+  //身份证重复
+  checkIdRepeat(arr) {
+    let repeatIdArr = [];//重复的id数组
+    let repeatContactsArr = [];//重复的联系人数组
+
+    //联系人两两比较
+    for (let i = 0; i < arr.length; i++) {
+      const prevObj = arr[i];//前一个联系人
+      prevObj.num = i+1;//序号
+      if (repeatIdArr.indexOf(prevObj.idCard) > -1) {
+        //当前联系人的id已经存在于 重复的id数组
+        continue
+      }
+
+      let tempArr = [prevObj];//临时数组,存放本次循环重复的联系人
+      for (let j = i + 1; j < arr.length; j++) {
+        const nextObj = arr[j];//下一个联系人
+        nextObj.num = j+1;//序号
+        if (prevObj.idCard === nextObj.idCard) {
+          repeatIdArr.push(nextObj.idCard);//重复的id保存
+          tempArr.push(nextObj)
+        }
+      }
+
+      if (tempArr.length > 1) {
+        //有重复的,保存repeatContactsArr重复的联系人数组
+        tempArr.forEach(function (item) {
+          repeatContactsArr.push(item)
+        })
+      }
+    }
+
+    if (repeatContactsArr.length > 0) {
+      let nameStr = '';
+      repeatContactsArr.forEach(function (item) {
+        nameStr += '游客'+ item.num + '，'
+      });
+      my.showToast({
+        content: nameStr.slice(0, -1) + '身份证号重复',
+        duration: 2000,
+      });
+      return false
+    } else {
+      return true
+    }
+  },
   getpayorder() {
     var _self = this;
     my.httpRequest({
@@ -372,7 +470,10 @@ Page({
                 my.showLoading({
                   content: '出票中请稍后',
                 });
-                _self.getcasemsg(_self.data.orderid);
+                //获取支付结果,1s一次,页面离开时销毁
+                _self._timer = setInterval(function(){
+                  _self.getcasemsg(_self.data.orderid)
+                }, 1000)
               }
             }
           })
@@ -393,10 +494,6 @@ Page({
             my.redirectTo({
               url: '../order/order?orderid=' + caseid
             });
-          } else {
-            setTimeout(function () {
-              _self.getcasemsg(caseid)
-            }, 1000)
           }
         }
       },

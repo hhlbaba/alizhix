@@ -51,7 +51,7 @@
         <button type="button" catchTap="buyagain" data-id='{{item.productId}}' class="againbtn casebtn" a:if="{{item.hhlState !== 1}}">再次预订</button>
         <button type="button" catchTap="oddcase" data-ordersn='{{item.orderSn}}' class="quxiaobtn casebtn cancelbtn" a:if="{{item.hhlState === 1}}">取消</button>
         <button type="button" catchTap="pay" data-id='{{item.id}}' data-ordersn='{{item.orderSn}}' class="zhifubtn casebtn paybtn" a:if="{{item.hhlState === 1}}">支付</button>
-        <button type="button" catchTap="msgagain" data-ordersn='{{item.orderSn}}'  class="againmsgbtn casebtn" a:if="{{item.hhlState === 3 && item.isSendSms === 0}}">重发短信</button>
+        <button type="button" catchTap="msgagain" data-ordersn='{{item.orderSn}}' data-smscount='{{item.smsCount}}'  class="againmsgbtn casebtn" a:if="{{item.hhlState === 3 && item.isSendSms === 0}}">重发短信</button>
         <button type="button" catchTap="backmoney" data-isPartialRefund='{{item.isPartialRefund}}' data-verifyNum='{{item.verifyNum}}' data-name='{{item.productName}}' data-id='{{item.id}}' data-date='{{item.departDate}}' data-num='{{item.productNum}}' data-price='{{item.orderAmount}}' class="backbtn casebtn" a:if="{{(item.hhlState === 3 || item.hhlState === 4) && item.refundStatus !==5}}">申请退款</button>
         <button type="button" catchTap="qrcode" data-qcode="{{item.verifyCode}}" data-qr="{{item.qrcodeImg}}" class="qrcodebtn casebtn codebtn" a:if="{{item.hhlState === 3}}">二维码</button>
       </view>
