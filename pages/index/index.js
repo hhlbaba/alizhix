@@ -23,13 +23,11 @@ Page({
       baseurl: app.globalData.baseurl,
       supplierId: app.globalData.supplierId
     })
-    var url = this.baseUrl + '/api/product/shop/selectShopDetail';
+    var url = this.data.baseurl + '/api/product/shop/zfbxcxSelectShop';
     my.httpRequest({
       url: url,
       data: {
-        'Authorization': my.getStorageSync({ key: 'token' }).data,
-        'id': app.globalData.supplierId
-
+        id: app.globalData.supplierId
       },
       success: (res) => {
         if (res.data.code === 0 && res.data.data.state === 2) {

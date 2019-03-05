@@ -33,7 +33,10 @@ Page({
     var _self = this;
     my.httpRequest({
       url: this.data.baseurl + '/api/product/ticketMobile/getPhoneBuySupplierId',
-      data: { supplierId: this.data.supplierId },
+      data: {
+        supplierId: this.data.supplierId,
+        shopType: 'ZFBXCX'
+      },
       success: (res) => {
         if (res.data.code == 0) {
           _self.setData({

@@ -75,6 +75,7 @@
     </view>
     <view class="playertit">订单信息</view>
     <view class="plist msgplist">
+      <view class="casetxt">支付方式：{{payType}}</view>
       <view class="casetxt">订单编号：{{showmsg.orderSn}}</view>
       <!-- <view class="casetxt" a:if="{{showmsg.indate}}">有效期：{{showmsg.indate}}</view> -->
       <view class="casetxt">下单时间：{{showmsg.placeOrderTime.replace('.0','')}}</view>

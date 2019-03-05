@@ -16,14 +16,12 @@ Page({
   getcasemsg(){
     var _self = this;
     my.httpRequest({
-      url: this.data.baseurl+'/api/order/directSelling/orderDetail', // 目标服务器url
+      url: this.data.baseurl+'/api/order/directSelling/refundProgress', // 目标服务器url
       headers:{'Authorization':my.getStorageSync({key: 'token'}).data},
-      method:'get',
       data:{'orderId':this.data.caseid},
       success: (res) => {
         console.log(res)
         if(res.data.code==0){
-          res.data.data.touristInfo = JSON.parse(res.data.data.touristInfo)
           _self.setData({
             showmsg : res.data.data
           })

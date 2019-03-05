@@ -1,35 +1,40 @@
 <view class="container">
   <view class="bstop">
-    <view class="bstate" a:if="{{showmsg.refundStatus==1 || showmsg.refundStatus==2}}">退款状态：退款中</view>
-    <view class="bstate" a:if="{{showmsg.refundStatus==3}}">退款状态：已部分退款</view>
-    <view class="bstate" a:if="{{showmsg.refundStatus==4}}">退款状态：已退款</view>
-    <view class="bstate" a:if="{{showmsg.refundStatus==5}}">退款状态：退款失败</view>
+    <view class="bstate" a:if="{{showmsg.refund.status==0}}">退款状态：退款中</view>
+    <view class="bstate" a:if="{{showmsg.refund.status==1}}">退款状态：已退款</view>
+    <view class="bstate" a:if="{{showmsg.refund.status==2}}">退款状态：退款失败</view>
     <view class="bstxt">
-      <view class="bslist">退款金额: <view class="redpri">￥{{showmsg.refundAmount}}</view></view>
-      <view class="bslist">退款原因: {{showmsg.reason}}</view>
+      <view class="bslist">退款金额：<view class="redpri"><text style="color:#252525" a:if="{{showmsg.refund.status==0}}">预计</text>￥{{showmsg.refund.amount}}</view></view>
+      <view class="bslist">退款原因：{{showmsg.refund.reason}}</view>
     </view>
   </view>
   <view class="bstree">
-    <view class="bsstatetxt" a:if="{{showmsg.result==0}}">待处理<view class="redpri">￥{{showmsg.refundAmount}}</view></view>
-    <view class="bsstatetxt" a:if="{{showmsg.result==1}}">成功<view class="redpri">￥{{showmsg.refundAmount}}</view></view>
-    <view class="bsstatetxt" a:if="{{showmsg.result==2}}">失败<view class="redpri">￥{{showmsg.refundAmount}}</view></view>
-    <view class="treebox">
-      <view class="tlist" a:if="{{showmsg.dealTime}}">
-        <view class="tltit">完成</view>
-        <view class="tltime">{{showmsg.dealTime}}</view>
-        <view class="tlcall">如有疑问，请联系景区029-09090909</view>
-        <view class="quan"></view>
+    <view class="bsstatetxt" a:if="{{showmsg.refund.status==0}}">待处理<view class="redpri"><text style="color:#252525">预计</text>￥{{showmsg.refund.amount}}</view></view>
+    <view class="bsstatetxt" a:if="{{showmsg.refund.status==1}}">成功<view class="redpri">￥{{showmsg.refund.amount}}</view></view>
+    <view class="bsstatetxt" a:if="{{showmsg.refund.status==2}}">失败<view class="redpri">￥{{showmsg.refund.amount}}</view></view>
+    <view class="treebox" style="color: #9ca0aa;">
+      <view class="tlist" a:if="{{showmsg.refundProgressList[2].createTime}}">
+        <view a:if="{{showmsg.refundProgressList.length === 3}}" class="tltit" style="color:#3766ff">完成</view>
+        <view a:else class="tltit">完成</view>
+        <view class="tltime">{{showmsg.refundProgressList[2].createTime}}</view>
+        <view class="tlcall" a:if="{{showmsg.refundProgressList[2].describe}}">{{showmsg.refundProgressList[2].describe}}</view>
+        <view a:if="{{showmsg.refundProgressList.length === 3}}" class="quan" style="background-color: #3766ff;border-color: #3766ff;"></view>
+        <view a:else class="quan"></view>
       </view>
-      <view class="tlist" a:if="{{showmsg.dealTime}}">
-        <view class="tltit">退款审核</view>
-        <view class="tltime">{{showmsg.dealTime}}</view>
-        <view class="tlcall" a:if="{{showmsg.dealDesc}}">{{showmsg.dealDesc}}</view>
-        <view class="quan"></view>
+      <view class="tlist" a:if="{{showmsg.refundProgressList[1].createTime}}">
+        <view a:if="{{showmsg.refundProgressList.length === 2}}" class="tltit" style="color:#3766ff">退款审核</view>
+        <view a:else class="tltit">退款审核</view>
+        <view class="tltime">{{showmsg.refundProgressList[1].createTime}}</view>
+        <view class="tlcall" a:if="{{showmsg.refundProgressList[1].describe}}">{{showmsg.refundProgressList[1].describe}}</view>
+        <view a:if="{{showmsg.refundProgressList.length === 2}}" class="quan" style="background-color: #3766ff;border-color: #3766ff;"></view>
+        <view a:else class="quan"></view>
       </view>
-      <view class="tlist lasttlist" a:if="{{showmsg.applyTime}}">
-        <view class="tltit">您的退款申请已提交</view>
-        <view class="tltime">{{showmsg.applyTime}}</view>
-        <view class="quan"></view>
+      <view class="tlist lasttlist" a:if="{{showmsg.refundProgressList[0].createTime}}">
+        <view a:if="{{showmsg.refundProgressList.length === 1}}" class="tltit" style="color:#3766ff">您的退款申请已提交</view>
+        <view a:else class="tltit">您的退款申请已提交</view>
+        <view class="tltime">{{showmsg.refundProgressList[0].createTime}}</view>
+        <view a:if="{{showmsg.refundProgressList.length === 1}}" class="quan" style="background-color: #3766ff;border-color: #3766ff;"></view>
+        <view a:else class="quan"></view>
       </view>
     </view>
   </view>

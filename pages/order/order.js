@@ -3,7 +3,8 @@ Page({
     baseurl: '',
     caseid: '',
     showmsg: '',  //xinxi
-    supplierId: ''
+    supplierId: '',
+    payType: '' //支付方式
   },
   onLoad(data) {
     const app = getApp();
@@ -27,8 +28,50 @@ Page({
       data: { 'orderId': this.data.caseid },
       success: (res) => {
         if (res.data.code == 0) {
+          var a;
           res.data.data.touristInfo = JSON.parse(res.data.data.touristInfo)
+          switch (res.data.data.payType) {
+            case (1):
+              a = '信用账户'; break;
+            case (2):
+              a = '六码合一'; break;
+            case (3):
+              a = '西安银行'; break;
+            case (4):
+              a = '支付宝'; break;
+            case (5):
+              a = '微信'; break;
+            case (6):
+              a = '翼支付'; break;
+            case (7):
+              a = '银联支付'; break;
+            case (8):
+              a = '京东支付'; break;
+            case (9):
+              a = 'QQ钱包支付'; break;
+            case (10):
+              a = '银行卡支付'; break;
+            case (11):
+              a = '西安银行卡'; break;
+            case (12):
+              a = '微信支付'; break;
+            case (13):
+              a = '支付宝'; break;
+            case (14):
+              a = '银联在线快捷支付'; break;
+            case (15):
+              a = '银联二维码扫码'; break;
+            case (16):
+              a = '翼支付'; break;
+            case (17):
+              a = '支付宝小程序支付'; break;
+            case (100):
+              a = '聚合支付'; break;
+            case (200):
+              a = '大额支付'; break;
+          }
           _self.setData({
+            payType: a,
             showmsg: res.data.data
           })
         }
