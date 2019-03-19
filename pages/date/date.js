@@ -155,7 +155,6 @@ const conf = {
   onInputDate(e) {
     this.inputTimer && clearTimeout(this.inputTimer);
     this.inputTimer = setTimeout(() => {
-      console.log(e);
       const v = e.detail.value;
       const _v = (v && v.split('-')) || [];
       const RegExpYear = /^\d{4}$/;

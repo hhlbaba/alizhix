@@ -6,64 +6,74 @@
         <image src="{{item.url}}" class="apic" onTap="openmodel" data-src="{{item.url}}"/>
       </swiper-item>
     </swiper>
-    <view class="aicon" a:if="{{ticket.qrcode==1}}">扫码入园    
+    <view class="aicon" a:if="{{ticket.qrcode==1}}">扫码入园            
     </view>
-    <view class="apicnum">{{thispage}}/{{ticket.images.length}}张    
+    <view class="apicnum">{{thispage}}/{{ticket.images.length}}张            
     </view>
   </view>
   <view class="adrtxt">
-    <view class="adrtit">{{ticket.ticketName}}    
+    <view class="adrtit">{{ticket.ticketName}}            
     </view>
-    <view class="adrinclud" a:if="{{ticket.ticketType==2}}">包含：        
-      <text>{{ticket.ticketIncludes}}</text>
+    <view class="adrinclud" a:if="{{ticket.ticketType==2}}">包含：                    
+      <text>{{ticket.ticketIncludes}}      
+      </text>
     </view>
     <view class="adrprice">
       <view>
-        <text class="mnyicon">￥</text>
-        <text class="numred">{{ticket.marketAmount}}</text>起       
-        <text class="numgray" a:if="{{ticket.marketAmount!==ticket.storeAmount}}">￥{{ticket.storeAmount}}</text>
+        <text class="mnyicon">￥        
+        </text>
+        <text class="numred">{{ticket.marketAmount}}        
+        </text>起                       
+        <text class="numgray" a:if="{{ticket.marketAmount!==ticket.storeAmount}}">￥{{ticket.storeAmount}}        
+        </text>
       </view>
-      <button class="buybtn" a:if="{{sdata.dailyStock === 0}}" style="background-color: #c1c2c5">卖光了</button>
-      <button class="buybtn" a:else type="button" onTap="buy">购买</button>
+      <button class="buybtn" a:if="{{sdata.dailyStock === 0}}" style="background-color: #c1c2c5">卖光了      
+      </button>
+      <button class="buybtn" a:else type="button" onTap="buy">购买      
+      </button>
     </view>
   </view>
   <view class="msgiconbox">
-    <view class="msgicon" a:if="{{ticket.bookTime}}">{{ticket.bookTime}}</view>
-    <view class="msgicon" a:if="{{ticket.refundDesc}}">{{ticket.refundDesc}}</view>
-    <view class="msgicon" a:if="{{ticket.verifyDesc}}">{{ticket.verifyDesc}}</view>
+    <view class="msgicon" a:if="{{ticket.bookTime}}">{{ticket.bookTime}}    
+    </view>
+    <view class="msgicon" a:if="{{ticket.refundDesc}}">{{ticket.refundDesc}}    
+    </view>
+    <view class="msgicon" a:if="{{ticket.verifyDesc}}">{{ticket.verifyDesc}}    
+    </view>
   </view>
-  <view class="knowtitle">预订须知</view>
+  <view class="knowtitle">预订须知  
+  </view>
   <view class="buyknow">
     <view class="knowunit">
-      <text class="unittit">费用包含      
+      <text class="unittit">费用包含                  
       </text>
       <view class="unittxt">
         <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
       </view>
     </view>
     <view class="knowunit">
-      <text class="unittit">费用不包含      
+      <text class="unittit">费用不包含                  
       </text>
       <view class="unittxt">
         <template is="wxParse" data="{{wxParseData:nofee.nodes}}"/>
       </view>
     </view>
     <view class="knowunit">
-      <text class="unittit">入园方式      
+      <text class="unittit">入园方式                  
       </text>
       <view class="unittxt">
         <template is="wxParse" data="{{wxParseData:joinway.nodes}}"/>
       </view>
     </view>
     <view class="knowunit">
-      <text class="unittit">退款说明      
+      <text class="unittit">退款说明                  
       </text>
       <view class="unittxt">
         <template is="wxParse" data="{{wxParseData:refundNote.nodes}}"/>
       </view>
     </view>
     <view class="knowunit">
-      <text class="unittit">预订说明      
+      <text class="unittit">预订说明                  
       </text>
       <view class="unittxt">
         <template is="wxParse" data="{{wxParseData:bookNote.nodes}}"/>
@@ -71,14 +81,20 @@
     </view>
   </view>
   <view class="footer">
-    <button type="button" onTap="call" class="footbtn callkefu">联系客服    
+    <button type="button" onTap="call" class="footbtn callkefu">联系客服            
     </button>
-    <button a:if="{{sdata.dailyStock === 0}}" class="footbtn buys" style="background-color: #c1c2c5">该票已售罄    
+    <button a:if="{{sdata.dailyStock === 0}}" class="footbtn buys" style="background-color: #c1c2c5">该票已售罄            
     </button>
-    <button type="button" a:else onTap="buy" class="footbtn buys">立即购买    
+    <button type="button" a:else onTap="buy" class="footbtn buys">立即购买            
     </button>
   </view>
   <view class="model" a:if="{{qrbol}}" onTap="closebol">
-    <image class="qrpic" src="{{qrimg}}" a:if="{{qrbol}}"/>
+    <swiper a:if="{{qrbol}}" class="swiperWin" onChange="winSwiper">
+      <swiper-item a:for="{{ticket.images}}">
+        <image src="{{item.url}}" class="apic2" data-src="{{item.url}}"/>
+      </swiper-item>
+    </swiper>
+    <view class="swiperpages">{{winSwiperindex}}/{{ticket.images.length}}张 
+    </view>
   </view>
 </view>

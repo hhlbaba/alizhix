@@ -1,11 +1,17 @@
 App({
   globalData: {
-    //baseurl:'https://api.zhiyousx.com',
+    baseurl: 'https://api.zhiyousx.com',
     // baseurl : 'http://192.168.10.56:8765',
-    baseurl: 'https://beta.zhiyousx.com',
-    supplierId: 192
+    // baseurl: 'https://beta.zhiyousx.com',
+    supplierId: '',
   },
-  onLaunch(options) {
+  onLaunch() {
+    var app = getApp();
+    if (my.getExtConfigSync()) {
+      app.globalData.supplierId = my.getExtConfigSync().key;
+    } else {
+      app.globalData.supplierId = 192;
+    }
     // this.getuserinfo()
   },
   onShow(options) {

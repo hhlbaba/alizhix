@@ -7,6 +7,30 @@ Page({
     supplierId: ''
   },
   onShow() {
+    // var that = this;
+    // var openid = my.getStorageSync({ key: 'userid' }).data; // 缓存数据的key
+    // if (openid) {
+    //   this.isbindphone()
+    // } else {
+    //   my.getAuthCode({   //首次打开用户授权获取authCode
+    //     scopes: 'auth_base',
+    //     success: (res) => {
+    //       my.httpRequest({
+    //         url: this.data.baseurl + '/api/order/directSelling/getUserId', // 目标服务器url
+    //         data: { authCode: res.authCode, merchantId: this.data.supplierId },
+    //         success: (res2) => {
+    //           if (res2.data.code == 0) {
+    //             my.setStorageSync({
+    //               key: 'userid',
+    //               data: res2.data.data
+    //             })
+    //             that.isbindphone()
+    //           }
+    //         },
+    //       });
+    //     }
+    //   })
+    // }
   },
   onLoad() {
     const app = getApp();
@@ -28,6 +52,21 @@ Page({
       supplierId: app.globalData.supplierId
     })
     this.getshopphone()
+  },
+  isbindphone() {
+    var openid = my.getStorageSync({ key: 'userid' }).data; // 缓存数据的key
+    var that = this;
+    my.httpRequest({
+      url: that.data.baseurl + '/api/user/DSUser/getUserInfo',
+      data: { wxopenid: openid },
+      success: (res) => {
+        if (res.data.code === -2) {
+          my.navigateTo({
+            url: '../login/login'
+          })
+        }
+      },
+    });
   },
   getshopphone() {
     var _self = this;

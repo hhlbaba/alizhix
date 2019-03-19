@@ -89,7 +89,6 @@ Page({
     });
   },
   oddcase(res) {
-    console.log(res)
     var _self = this;
     my.httpRequest({
       url: this.data.baseurl + '/api/order/direct/order/cancel', // 目标服务器url
@@ -122,16 +121,12 @@ Page({
           my.tradePay({
             tradeNO: res.data.data,
             success: (res) => {
-              console.log(res)
               if (res.resultCode == '9000') {
                 my.showLoading({
                   content: '出票中请稍后',
                 });
                 _self.getpaycasemsg(coco.target.dataset.id)
               }
-            },
-            fail: (res) => {
-              console.log(res)
             }
           })
         }

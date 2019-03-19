@@ -40,11 +40,8 @@ Page({
     });
     // this.getticks();
   },
-  goTop(e) {
-    console.log(e)
-  },
+  goTop(e) {},
   onPageScroll(e) {
-    console.log(e)
     if (e.scrollTop > 3502 * this.data.pages) {
       this.setData({
         pages: this.data.pages + 1
@@ -104,9 +101,6 @@ Page({
           }
           my.hideLoading();
         }
-      },
-      fail: () => {
-        console.log('fail')
       }
     });
   },
@@ -259,7 +253,6 @@ Page({
     this.setData({
       activeTab: index,
     });
-    console.log(this.data.activeTab)
   },
   casemsg(id) {     //和申请退款时间冲突了有bug没解决
     my.navigateTo({

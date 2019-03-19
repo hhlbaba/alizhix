@@ -23,21 +23,21 @@
     <text class="people">
       常用旅客:
     </text>
-    <view class="peolist">
+    <!-- <view class="peolist">
         <text class="plist" a:for="{{oftenlist}}" a:for-index="index" onTap="oftenpeple" data-index="{{index}}" data-list="{{item}}">
           <text a:if="{{!item.ischoose}}" class="nocsspeople">{{item.name}}</text>
           <text a:if="{{item.ischoose}}" class="clickpeple">{{item.name}}</text>
         </text>
-    </view>
+    </view> -->
     
   </view>
   <view class="unit2 pepleunit">
     <view class="peplenum">游客1(取票人)</view>
     <view class="pepletxt">
-      <view class="txtlist">
+      <!-- <view class="txtlist">
         <view class="listkey">姓名</view>
         <view class="listval"><input type="text" onInput="onename" value="{{userarr[0].name}}" placeholder="请输入姓名" class="valipt"/></view>
-      </view>
+      </view> -->
       <view class="txtlist">
         <view class="listkey">手机号码</view>
         <view class="listval"><input type="number" maxlength="11" onInput="onephone" value="{{userarr[0].mobile}}"  placeholder="用于接收入园凭证" class="valipt"/></view>

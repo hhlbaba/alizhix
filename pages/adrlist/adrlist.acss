@@ -8,13 +8,17 @@
 
 .apics {
   width: 100%;
-  height: 400rpx;
+  /* height: 400rpx; */
   position: relative;
 }
 
 .apic {
   width: 100%;
   height: 400rpx;
+}
+
+.apic2 {
+  width: 100%;
 }
 
 .aicon {
@@ -37,6 +41,16 @@
   right: 20rpx;
   color: white;
   z-index: 10;
+}
+
+.swiperpages {
+  position: absolute;
+  bottom: 2.2rem;
+  color: white;
+  z-index: 10;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 0 auto;
 }
 
 .adrtxt {
@@ -191,8 +205,8 @@
   width: 100%;
   height: 100vh;
   top: 0;
-  background-color: rgba(127, 127, 127, .4);
-  z-index: 2;
+  background-color: rgba(127, 127, 127, .8);
+  z-index: 11;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,4 +240,10 @@
 view {
   word-break: break-all;
   overflow: unset;
+}
+
+.swiperWin {
+  position: fixed;
+  top: 300rpx;
+  z-index: 99
 }

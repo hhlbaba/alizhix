@@ -34,7 +34,7 @@ Page({
     })
     this.getoften();
   },
-  onUnload(){
+  onUnload() {
     clearInterval(this._timer);
   },
   onShow() {
@@ -58,7 +58,24 @@ Page({
           })
         }
       }
-    })
+    });
+  },
+  //赋值手机号码
+  initPhone() {
+    var openid = my.getStorageSync({ key: 'userid' }).data; // 缓存数据的key
+    my.httpRequest({
+      url: this.data.baseurl + '/api/user/DSUser/getUserInfo?wxopenid=' + openid,
+      headers: { 'content-type': 'application/json;charset=UTF-8' },
+      success: (res) => {
+        if (res.data.code === 0) {
+          var newarr = this.data.userarr;
+          newarr[0].mobile = res.data.data.phone;
+          this.setData({
+            userarr: newarr
+          })
+        }
+      }
+    });
   },
   getoften() {   //获取常用旅客
     var _self = this;
@@ -79,14 +96,11 @@ Page({
           _self.setData({
             oftenlist: res.data.data
           })
-          console.log(this.data.oftenlist)
         }
       },
     });
   },
   oftenpeple(res) {
-    console.log(res)
-    console.log(this.data.oftenlist)
     if (res.target.dataset.list.ischoose) {
       this.data.oftenlist[res.target.dataset.index].ischoose = !this.data.oftenlist[res.target.dataset.index].ischoose; // 更新选中状态
       this.data.userarr[res.target.dataset.list.userlength].name = '';
@@ -138,7 +152,6 @@ Page({
   },
   //获取价格日历数据
   getCalendar() {
-    var _self = this;
     let url = this.data.baseurl + '/api/product/ticketMobile/directSellingTicketPrice';
     let data = {
       ticketId: this.data.tickid
@@ -152,7 +165,6 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 0) {
-
           this.setData({
             priceCalendar: res.data.data,
           });
@@ -228,9 +240,11 @@ Page({
         } else {
           this.data.userarr.unshift({ 'mobile': '', 'name': '' });
         }
+
         this.setData({
           userarr: this.data.userarr
         })
+        this.initPhone()
       }
     })
   },
@@ -299,32 +313,31 @@ Page({
       }
       return false;
     }
-
+    this.data.userarr[0].name = '支付宝用户';
     //游客验证
     for (var y = 0; y < this.data.userarr.length; y++) {
       var obj = this.data.userarr[y];
-      if(!this.checkName({num: y, val: obj.name})) return false;
+      if (!this.checkName({ num: y, val: obj.name })) return false;
 
-      if(this.data.sdata.touristInfoType === 0){
+      if (this.data.sdata.touristInfoType === 0) {
         //无需填写
-        if(!this.checkPhone({num: y, val: obj.mobile})) return false;
+        if (!this.checkPhone({ num: y, val: obj.mobile })) return false;
       }
-      if(this.data.sdata.touristInfoType === 1){
+      if (this.data.sdata.touristInfoType === 1) {
         //只需要输入一个客人资料
-        if(!this.checkPhone({num: y, val: obj.mobile})) return false;
-        if(!this.checkId({num: y, val: obj.idCard})) return false;
+        if (!this.checkPhone({ num: y, val: obj.mobile })) return false;
+        if (!this.checkId({ num: y, val: obj.idCard })) return false;
       }
-      if(this.data.sdata.touristInfoType === 2){
+      if (this.data.sdata.touristInfoType === 2) {
         //要求输入每个客人资料
-        if(y === 0){
-          if(!this.checkPhone({num: y, val: obj.mobile})) return false;
+        if (y === 0) {
+          if (!this.checkPhone({ num: y, val: obj.mobile })) return false;
         }
-        if(!this.checkId({num: y, val: obj.idCard})) return false;
+        if (!this.checkId({ num: y, val: obj.idCard })) return false;
       }
     }
 
-    if(!this.checkIdRepeat(this.data.userarr)) return false;
-
+    if (!this.checkIdRepeat(this.data.userarr)) return false;
     my.showLoading({
       content: '下单中请稍后',
     });
@@ -334,7 +347,6 @@ Page({
       headers: { 'Authorization': my.getStorageSync({ key: 'token' }).data, 'content-type': 'application/json;charset=UTF-8' },
       method: "POST",
       success: (res) => {
-        console.log(res)
         if (res.data.code == 0) {
           _self.setData({
             orderid: res.data.data.id
@@ -352,8 +364,8 @@ Page({
     });
   },
   //验证姓名
-  checkName({num, val}) {
-    if(!val) {
+  checkName({ num, val }) {
+    if (!val) {
       my.showToast({
         content: '姓名不得为空',
         duration: 2000,
@@ -373,7 +385,7 @@ Page({
     return true
   },
   //验证手机
-  checkPhone({num, val}) {
+  checkPhone({ num, val }) {
     var regphone = /^1(3|4|5|7|8)\d{9}$/;
     if (!regphone.test(val)) {
       my.showToast({
@@ -414,7 +426,7 @@ Page({
     //联系人两两比较
     for (let i = 0; i < arr.length; i++) {
       const prevObj = arr[i];//前一个联系人
-      prevObj.num = i+1;//序号
+      prevObj.num = i + 1;//序号
       if (repeatIdArr.indexOf(prevObj.idCard) > -1) {
         //当前联系人的id已经存在于 重复的id数组
         continue
@@ -423,7 +435,7 @@ Page({
       let tempArr = [prevObj];//临时数组,存放本次循环重复的联系人
       for (let j = i + 1; j < arr.length; j++) {
         const nextObj = arr[j];//下一个联系人
-        nextObj.num = j+1;//序号
+        nextObj.num = j + 1;//序号
         if (prevObj.idCard === nextObj.idCard) {
           repeatIdArr.push(nextObj.idCard);//重复的id保存
           tempArr.push(nextObj)
@@ -441,7 +453,7 @@ Page({
     if (repeatContactsArr.length > 0) {
       let nameStr = '';
       repeatContactsArr.forEach(function (item) {
-        nameStr += '游客'+ item.num + '，'
+        nameStr += '游客' + item.num + '，'
       });
       my.showToast({
         content: nameStr.slice(0, -1) + '身份证号重复',
@@ -465,13 +477,12 @@ Page({
           my.tradePay({
             tradeNO: res.data.data,
             success: (res) => {
-              console.log(res)
               if (res.resultCode == '9000') {
                 my.showLoading({
                   content: '出票中请稍后',
                 });
                 //获取支付结果,1s一次,页面离开时销毁
-                _self._timer = setInterval(function(){
+                _self._timer = setInterval(function () {
                   _self.getcasemsg(_self.data.orderid)
                 }, 1000)
               }

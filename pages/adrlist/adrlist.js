@@ -5,6 +5,7 @@ Page({
     autoplay: true,
     interval: 3000,
     thispage: 1,  //当前页
+    winSwiperindex: 1,  //swiper弹窗当前页
     msgicon: [
       { 'name': '当天8：00前预订' },
       { 'name': '不可退' },
@@ -40,7 +41,6 @@ Page({
       url: url,
       data: data,
       success: (res) => {
-        console.log(res)
         this.setData({
           sdata: res.data.data
         })
@@ -92,6 +92,11 @@ Page({
   thisindex(e) {
     this.setData({
       thispage: e.detail.current + 1
+    })
+  },
+  winSwiper(e) {
+    this.setData({
+      winSwiperindex: e.detail.current + 1
     })
   },
   buy() {

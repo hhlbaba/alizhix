@@ -5,7 +5,6 @@ Page({
     showmsg : '',
   },
   onLoad(res) {
-    console.log(res)
     const app = getApp();
     this.setData({
       caseid : res.id,
@@ -20,7 +19,6 @@ Page({
       headers:{'Authorization':my.getStorageSync({key: 'token'}).data},
       data:{'orderId':this.data.caseid},
       success: (res) => {
-        console.log(res)
         if(res.data.code==0){
           _self.setData({
             showmsg : res.data.data

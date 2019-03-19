@@ -64,9 +64,7 @@ Page({
     })
     this.getlist();
   },
-  getswiper() {
-    console.log('调')
-  },
+  getswiper() {},
   getlist() {
     // my.showLoading({
     //   content: '数据加载中',

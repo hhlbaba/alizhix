@@ -5,7 +5,7 @@ Page({
     baseurl: '',
     pagesign: '',  //页面唯一标识
     picyzm: '',  //图片验证码
-    iptpicyzm: '',   //  图形验证码
+    // iptpicyzm: '',   //  图形验证码
     phonenum: '',  //  电话号码
     yzm: '',   //动态码
     yzmable: false,   //yzm  able
@@ -18,36 +18,36 @@ Page({
       baseurl: app.globalData.baseurl,
       supplierId: app.globalData.supplierId
     })
-    this.getsign();
+    // this.getsign();
     this.getuserid();
   },
   onshow() { },
-  getsign() {
-    var _self = this;
-    my.httpRequest({
-      url: this.data.baseurl + '/api/user/DSUser/signValue', // 目标服务器url
-      success: function (res) {
-        _self.getpicyzm(res.data)
-        _self.setData({
-          pagesign: res.data
-        })
-        my.setStorageSync({
-          key: 'pagesign', // 缓存数据的key
-          data: res.data, // 要缓存的数据
-        });
-      },
-      fail(res) {
-        _self.getpicyzm(res.data)
-        _self.setData({
-          pagesign: res.data
-        })
-        my.setStorageSync({
-          key: 'pagesign', // 缓存数据的key
-          data: res.data, // 要缓存的数据
-        });
-      }
-    });
-  },
+  // getsign() {
+  //   var _self = this;
+  //   my.httpRequest({
+  //     url: this.data.baseurl + '/api/user/DSUser/signValue', // 目标服务器url
+  //     success: function (res) {
+  //       _self.getpicyzm(res.data)
+  //       _self.setData({
+  //         pagesign: res.data
+  //       })
+  //       my.setStorageSync({
+  //         key: 'pagesign', // 缓存数据的key
+  //         data: res.data, // 要缓存的数据
+  //       });
+  //     },
+  //     fail(res) {
+  //       _self.getpicyzm(res.data)
+  //       _self.setData({
+  //         pagesign: res.data
+  //       })
+  //       my.setStorageSync({
+  //         key: 'pagesign', // 缓存数据的key
+  //         data: res.data, // 要缓存的数据
+  //       });
+  //     }
+  //   });
+  // },
   getpicyzm(sign) {
     this.setData({
       picyzm: this.data.baseurl + '/api/user/DSUser/getCaptcha?signValue=' + sign
@@ -57,23 +57,34 @@ Page({
     var openid = my.getStorageSync({ key: 'userid' }).data; // 缓存数据的key
     if (this.data.phonenum == '') {
       my.showToast({
+        content: '请填写手机号码',
+        duration: 2000,
+      });
+      return false;
+    }
+    if (!(/^1[23456789]\d{9}$/.test(this.data.phonenum))) {
+      my.showToast({
         content: '请填写正确的手机号码',
         duration: 2000,
       });
       return false;
     }
-    if (this.data.iptpicyzm == '') {
-      my.showToast({
-        content: '验证码错误',
-        duration: 2000,
-      });
-      return false;
-    }
+    // if (this.data.iptpicyzm == '') {
+    //   my.showToast({
+    //     content: '验证码错误',
+    //     duration: 2000,
+    //   });
+    //   return false;
+    // }
     var _self = this;
     my.httpRequest({
       url: this.data.baseurl + '/api/user/DSUser/xcxSendVCode', // 目标服务器url    http://192.168.10.56:8765/api/user/DSUser/sendVCode?
       data: {
-        'signValue': this.data.pagesign, 'inputVal': this.data.iptpicyzm, 'phoneNum': this.data.phonenum, 'wxopenid': openid, 'type': 3
+        // 'signValue': '', 
+        'inputVal': '',
+        'phoneNum': this.data.phonenum,
+        'wxopenid': openid,
+        'type': 3
       },
       success: function (res) {
         if (res.data.code == 0) {
@@ -112,11 +123,11 @@ Page({
       },
     });
   },
-  picyzm(val) {
-    this.setData({
-      iptpicyzm: val.detail.value
-    })
-  },
+  // picyzm(val) {
+  //   this.setData({
+  //     iptpicyzm: val.detail.value
+  //   })
+  // },
   phonenum(val) {
     this.setData({
       phonenum: val.detail.value
@@ -127,9 +138,9 @@ Page({
       yzm: val.detail.value
     })
   },
-  changepicyzm() {
-    this.getsign();
-  },
+  // changepicyzm() {
+  //   this.getsign();
+  // },
   getuserid() {
     my.getAuthCode({   //首次打开用户授权获取authCode
       scopes: 'auth_base',
@@ -156,12 +167,25 @@ Page({
   nextgo() {
     var _self = this;
     var userid = my.getStorageSync({ key: 'userid' }).data; // 缓存数据的key
-    if (this.data.phonenum !== '' && this.data.yzm !== '' && this.data.iptpicyzm !== '') {
+    if (this.data.phonenum !== '' && this.data.yzm !== '') {
+      if (!(/^1[23456789]\d{9}$/.test(this.data.phonenum))) {
+        my.showToast({
+          content: '请填写正确的手机号码',
+          duration: 2000,
+        });
+        return false;
+      }
       my.httpRequest({
         url: this.data.baseurl + '/api/auth/jwt/directSellinglogin',
         method: 'post',
         headers: { 'content-type': 'application/json;charset=UTF-8' },
-        data: { 'phone': this.data.phonenum.toString(), 'signValue': this.data.pagesign.toString(), 'verifyCode': this.data.yzm.toString(), 'verifyCodeImg': this.data.iptpicyzm.toString(), 'wxopenid': userid, 'type': 3 },
+        data: {
+          'phone': this.data.phonenum.toString(),
+          'signValue': this.data.pagesign.toString(),
+          'verifyCode': this.data.yzm.toString(),
+          // 'verifyCodeImg': this.data.iptpicyzm.toString(), 
+          'wxopenid': userid, 'type': 3
+        },
         success(res) {
           if (res.data.code == 0) {
             my.setStorageSync({
@@ -171,9 +195,9 @@ Page({
             my.navigateBack({
               delta: 1
             })
-            // my.navigateTo({
-            //   url: "../index/index"
-            // });
+            my.navigateTo({
+              url: "../index/index"
+            });
           } else {
             my.alert({
               title: '登录失败',

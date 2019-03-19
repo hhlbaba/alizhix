@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/shopclose/shopclose",
-    "pages/login/login",
     "pages/addorder/addorder",
+    "pages/login/login",
+    "pages/shopclose/shopclose",
     "pages/order/order",
     "pages/backstate/backstate",
     "pages/postback/postback",
